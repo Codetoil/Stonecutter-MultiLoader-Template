@@ -20,9 +20,9 @@ val commonVersions =
 	providers.gradleProperty("stonecutter_enabled_common_versions").orNull?.split(",")?.map { it.trim() } ?: emptyList()
 val fabricmcVersions =
 	providers.gradleProperty("stonecutter_enabled_fabricmc_versions").orNull?.split(",")?.map { it.trim() } ?: emptyList()
-//val minecraftforgeVersions =
-//	providers.gradleProperty("stonecutter_enabled_minecraftforge_versions").orNull?.split(",")?.map { it.trim() }
-//		?: emptyList()
+val minecraftforgeVersions =
+	providers.gradleProperty("stonecutter_enabled_minecraftforge_versions").orNull?.split(",")?.map { it.trim() }
+		?: emptyList()
 val neoforgeVersions =
 	providers.gradleProperty("stonecutter_enabled_neoforge_versions").orNull?.split(",")?.map { it.trim() }
 		?: emptyList()
@@ -32,7 +32,7 @@ val quiltmcVersions =
 val dists = mapOf(
 	"common" to commonVersions,
 	"fabricmc" to fabricmcVersions,
-	//"minecraftforge" to minecraftforgeVersions,
+	"minecraftforge" to minecraftforgeVersions,
 	"neoforge" to neoforgeVersions,
 	"quiltmc" to quiltmcVersions,
 )

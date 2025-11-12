@@ -5,6 +5,8 @@ plugins {
 	// id("net.minecraftforge.accesstransformers")
 }
 
+minecraft.mavenizer(repositories)
+
 println(
 	"Java: ${providers.systemProperty("java.version").get()}, " +
 		"JVM: ${providers.systemProperty("java.vm.version").get()} (${
@@ -35,7 +37,7 @@ minecraft {
 
 			//args ("-mixin.config=${commonMod.id}.mixins.json")
 
-			classpath(sourceSets.main.get())
+			//classpath(sourceSets.main.get())
 		}
 
 		register("client") {

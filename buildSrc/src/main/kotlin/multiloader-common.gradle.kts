@@ -17,6 +17,7 @@ java {
 }
 
 repositories {
+	maven("https://libraries.minecraft.net") { name = "Mojang" }
 	mavenCentral()
 	exclusiveContent {
 		forRepository {
