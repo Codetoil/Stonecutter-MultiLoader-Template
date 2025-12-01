@@ -2,7 +2,7 @@ val IS_CI = System.getenv("CI") == "true"
 
 plugins {
 	id("dev.kikugie.stonecutter")
-	id("net.neoforged.moddev") version "2.0.120" apply false
+	id("net.neoforged.moddev") version "2.0.121" apply false
 	id("org.quiltmc.loom") version "1.11.1" apply false
 	id("net.minecraftforge.accesstransformers") version "5.0.1" apply false
 	id("net.minecraftforge.gradle") version "7.0.0-beta.48" apply false
