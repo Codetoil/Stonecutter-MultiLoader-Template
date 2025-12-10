@@ -19,12 +19,14 @@ plugins {
 val commonVersions =
 	providers.gradleProperty("stonecutter_enabled_common_versions").orNull?.split(",")?.map { it.trim() } ?: emptyList()
 val fabricmcVersions =
-	providers.gradleProperty("stonecutter_enabled_fabricmc_versions").orNull?.split(",")?.map { it.trim() } ?: emptyList()
+	providers.gradleProperty("stonecutter_enabled_fabricmc_versions").orNull?.split(",")?.map { it.trim() }
+		?: emptyList()
 val minecraftforgeVersions =
 	providers.gradleProperty("stonecutter_enabled_minecraftforge_versions").orNull?.split(",")?.map { it.trim() }
-	?: emptyList()
-val legacyMinecraftForgeVersions =	providers.gradleProperty("stonecutter_enabled_legacy_minecraftforge_versions").orNull?.split(",")?.map { it.trim() }
-	?: emptyList()
+		?: emptyList()
+val legacyMinecraftForgeVersions =
+	providers.gradleProperty("stonecutter_enabled_legacy_minecraftforge_versions").orNull?.split(",")?.map { it.trim() }
+		?: emptyList()
 val neoforgeVersions =
 	providers.gradleProperty("stonecutter_enabled_neoforge_versions").orNull?.split(",")?.map { it.trim() }
 		?: emptyList()

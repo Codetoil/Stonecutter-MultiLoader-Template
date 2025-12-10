@@ -10,7 +10,6 @@ base {
 }
 
 java {
-	println("Java ${commonProject.prop("java.version")}")
 	toolchain.languageVersion = JavaLanguageVersion.of(commonProject.prop("java.version")!!)
 	// withSourcesJar()
 	// withJavadocJar()
