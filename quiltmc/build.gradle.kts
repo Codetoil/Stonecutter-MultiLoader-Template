@@ -1,6 +1,6 @@
 plugins {
 	`multiloader-loader`
-	id("org.quiltmc.loom")
+	id("org.quiltmc.loom.remap")
 }
 
 dependencies {
@@ -45,10 +45,6 @@ loom {
 			// dependency("com.example.shadowedmod:1.2.3")
 			// configuration("exampleShadedConfigurationName")
 		}
-	}
-
-	mixin {
-		defaultRefmapName = "${mod.id}.refmap.json"
 	}
 }
 

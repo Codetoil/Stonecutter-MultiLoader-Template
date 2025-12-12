@@ -1,15 +1,11 @@
 plugins {
 	id("multiloader-common")
-	id("org.quiltmc.loom")
+	id("org.quiltmc.loom.remap")
 }
 
 loom {
 	accessWidenerPath =
 		common.project.file("../../src/main/resources/accesswideners/${commonMod.minecraft_version}-${mod.id}.accesswidener")
-
-	mixin {
-		useLegacyMixinAp = false
-	}
 }
 
 dependencies {

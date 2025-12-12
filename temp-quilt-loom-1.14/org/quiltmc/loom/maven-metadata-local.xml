@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.quiltmc</groupId>
+  <artifactId>loom</artifactId>
+  <versioning>
+    <latest>1.14-SNAPSHOT</latest>
+    <release>1.14.local</release>
+    <versions>
+      <version>1.14.local</version>
+      <version>1.14-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20251211033001</lastUpdated>
+  </versioning>
+</metadata>
