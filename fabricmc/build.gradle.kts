@@ -1,6 +1,6 @@
 plugins {
 	`multiloader-loader`
-	id("org.quiltmc.loom")
+	id("org.quiltmc.loom.remap")
 }
 
 dependencies {
@@ -31,10 +31,6 @@ loom {
 			configName = "Fabric Server"
 			ideConfigGenerated(true)
 		}
-	}
-
-	mixin {
-		defaultRefmapName = "${mod.id}.refmap.json"
 	}
 }
 

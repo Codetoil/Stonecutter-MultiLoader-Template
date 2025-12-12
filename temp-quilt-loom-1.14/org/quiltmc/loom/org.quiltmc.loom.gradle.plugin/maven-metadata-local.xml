@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.quiltmc.loom</groupId>
+  <artifactId>org.quiltmc.loom.gradle.plugin</artifactId>
+  <versioning>
+    <latest>1.14.local</latest>
+    <release>1.14.local</release>
+    <versions>
+      <version>1.14-SNAPSHOT</version>
+      <version>1.14.local</version>
+    </versions>
+    <lastUpdated>20251211033001</lastUpdated>
+  </versioning>
+</metadata>
