@@ -14,7 +14,7 @@ pluginManagement {
 }
 
 plugins {
-	id("dev.kikugie.stonecutter") version "0.7.11"
+	id("dev.kikugie.stonecutter") version "0.8"
 	id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
@@ -31,9 +31,6 @@ val legacyMinecraftForgeVersions =
 		?: emptyList()
 val neoforgeVersions =
 	providers.gradleProperty("stonecutter_enabled_neoforge_versions").orNull?.split(",")?.map { it.trim() }
-		?: emptyList()
-val legacyNeoForgeVersions =
-	providers.gradleProperty("stonecutter_enabled_legacy_neoforge_versions").orNull?.split(",")?.map { it.trim() }
 		?: emptyList()
 val quiltmcVersions =
 	providers.gradleProperty("stonecutter_enabled_quiltmc_versions").orNull?.split(",")?.map { it.trim() }
@@ -60,7 +57,6 @@ stonecutter {
 
 		branch("neoforge") {
 			versions(*neoforgeVersions.toTypedArray())
-			//versions(*legacyNeoForgeVersions.toTypedArray()).buildscript("legacy.gradle.kts")
 		}
 
 		branch("quiltmc") {
@@ -69,5 +65,5 @@ stonecutter {
 	}
 }
 
-rootProject.name = "Stonecutter-MultiLoader-Template"
+rootProject.name = "Stonecutter-MultiLoader-Template-Java21"
 
