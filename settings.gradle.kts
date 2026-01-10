@@ -23,13 +23,13 @@ val commonVersions =
 val fabricmcVersions =
 	providers.gradleProperty("stonecutter_enabled_fabricmc_versions").orNull?.split(",")?.map { it.trim() }
 		?: emptyList()
-val minecraftforgeVersions =
-	providers.gradleProperty("stonecutter_enabled_minecraftforge_versions").orNull?.split(",")?.map { it.trim() }
+val fg7MinecraftForgeVersions =
+	providers.gradleProperty("stonecutter_enabled_fg7_minecraftforge_versions").orNull?.split(",")?.map { it.trim() }
 		?: emptyList()
-val legacyMinecraftForgeVersions =
-	providers.gradleProperty("stonecutter_enabled_legacy_minecraftforge_versions").orNull?.split(",")?.map { it.trim() }
+val legacyMDGMinecraftForgeVersions =
+	providers.gradleProperty("stonecutter_enabled_legacy_mdg_minecraftforge_versions").orNull?.split(",")?.map { it.trim() }
 		?: emptyList()
-val neoforgeVersions =
+val neoForgeVersions =
 	providers.gradleProperty("stonecutter_enabled_neoforge_versions").orNull?.split(",")?.map { it.trim() }
 		?: emptyList()
 val quiltmcVersions =
@@ -51,12 +51,12 @@ stonecutter {
 		}
 
 		branch("minecraftforge") {
-			versions(*minecraftforgeVersions.toTypedArray())
-			versions(*legacyMinecraftForgeVersions.toTypedArray()).buildscript("legacy.gradle.kts")
+			versions(*fg7MinecraftForgeVersions.toTypedArray()).buildscript("fg7.gradle.kts")
+			versions(*legacyMDGMinecraftForgeVersions.toTypedArray()).buildscript("legacy_mdg.gradle.kts")
 		}
 
 		branch("neoforge") {
-			versions(*neoforgeVersions.toTypedArray())
+			versions(*neoForgeVersions.toTypedArray())
 		}
 
 		branch("quiltmc") {

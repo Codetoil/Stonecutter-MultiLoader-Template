@@ -10,12 +10,16 @@ loom {
 
 dependencies {
 	minecraft("com.mojang:minecraft:${commonMod.minecraft_version}")
-	mappings(loom.layered {
-		officialMojangMappings()
-		commonMod.propOrNull("parchment_mappings")?.let { parchmentVersion ->
-			if (parchmentVersion != "") parchment("org.parchmentmc.data:parchment-${commonMod.minecraft_version}:$parchmentVersion@zip")
-		}
-	})
+	if (commonMod.propOrNull("mcp_version") != null) {
+		mappings("de.oceanlabs.mcp:mcp_${commonMod.propOrNull("mcp_branch")}:${commonMod.propOrNull("mcp_version")}")
+	} else {
+		mappings(loom.layered {
+			officialMojangMappings()
+			commonMod.propOrNull("parchment_mappings")?.let { parchmentVersion ->
+				if (parchmentVersion != "") parchment("org.parchmentmc.data:parchment-${commonMod.minecraft_version}:$parchmentVersion@zip")
+			}
+		})
+	}
 
 	compileOnly("org.spongepowered:mixin:0.8.5")
 
