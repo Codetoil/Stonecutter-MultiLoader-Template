@@ -8,13 +8,13 @@ pluginManagement {
 		maven("https://maven.minecraftforge.net") { name = "MinecraftForge" }
 		maven("https://maven.kikugie.dev/snapshots")
 		maven("https://maven.kikugie.dev/releases")
-		// Temporary until https://github.com/QuiltMC/quilt-loom/pull/59 is merged
-		maven("./temp-quilt-loom-1.14")
+		// Temporary until Quilt Loom 1.14.2 gets fixed
+		maven("./temp-quilt-loom-1.14.2-fix")
 	}
 }
 
 plugins {
-	id("dev.kikugie.stonecutter") version "0.8"
+	id("dev.kikugie.stonecutter") version "0.8.2"
 	id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 

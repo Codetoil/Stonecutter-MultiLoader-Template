@@ -10,5 +10,5 @@ repositories {
 }
 
 dependencies {
-	implementation("dev.kikugie:stonecutter:0.8")
+	implementation("dev.kikugie:stonecutter:0.8.2")
 }

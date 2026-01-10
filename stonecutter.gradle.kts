@@ -2,11 +2,11 @@ val IS_CI = System.getenv("CI") == "true"
 
 plugins {
 	id("dev.kikugie.stonecutter")
-	id("net.neoforged.moddev") version "2.0.134" apply false
-	id("net.neoforged.moddev.legacyforge") version "2.0.134" apply false
-	id("org.quiltmc.loom.remap") version "1.14-SNAPSHOT" apply false
+	id("net.neoforged.moddev") version "2.0.138" apply false
+	id("net.neoforged.moddev.legacyforge") version "2.0.138" apply false
+	id("org.quiltmc.loom") version "1.14.2" apply false
 	id("net.minecraftforge.accesstransformers") version "5.0.3" apply false
-	id("net.minecraftforge.gradle") version "7.0.0-beta.55" apply false
+	id("net.minecraftforge.gradle") version "7.0.0-rc.2" apply false
 	id("net.minecraftforge.jarjar") version "0.2.3" apply false
 }
 

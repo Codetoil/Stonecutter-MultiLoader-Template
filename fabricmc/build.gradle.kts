@@ -1,6 +1,6 @@
 plugins {
 	`multiloader-loader`
-	id("org.quiltmc.loom.remap")
+	id("org.quiltmc.loom")
 }
 
 dependencies {
