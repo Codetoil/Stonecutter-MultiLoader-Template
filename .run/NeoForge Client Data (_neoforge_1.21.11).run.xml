@@ -1,0 +1,22 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="NeoForge Client Data (:neoforge:1.21.11)" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="net.neoforged.devlaunch.Main" />
+    <module name="Stonecutter-MultiLoader-Template-Java21.neoforge.1.21.11.main" />
+    <option name="PROGRAM_PARAMETERS" value="@E:\\Stonecutter-MultiLoader-Template-Java21\\neoforge\\versions\\1.21.11\\build\\moddev\\clientDataRunProgramArgs.txt" />
+    <option name="VM_PARAMETERS" value="@E:\\Stonecutter-MultiLoader-Template-Java21\\neoforge\\versions\\1.21.11\\build\\moddev\\clientDataRunVmArgs.txt -Dfml.modFolders=examplemod%%E:\\Stonecutter-MultiLoader-Template-Java21\\neoforge\\versions\\1.21.11\\build\\classes\\java\\main;examplemod%%E:\\Stonecutter-MultiLoader-Template-Java21\\neoforge\\versions\\1.21.11\\build\\resources\\main" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/neoforge/versions/1.21.11/run" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+  <configuration default="false" name="NeoForge Client Data (:neoforge:1.21.11)" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="net.neoforged.devlaunch.Main" />
+    <module name="Stonecutter-MultiLoader-Template-Java21.neoforge.1.21.11.main" />
+    <option name="PROGRAM_PARAMETERS" value="@E:\\Stonecutter-MultiLoader-Template-Java21\\neoforge\\versions\\1.21.11\\build\\moddev\\clientDataRunProgramArgs.txt" />
+    <option name="VM_PARAMETERS" value="@E:\\Stonecutter-MultiLoader-Template-Java21\\neoforge\\versions\\1.21.11\\build\\moddev\\clientDataRunVmArgs.txt -Dfml.modFolders=examplemod%%E:\\Stonecutter-MultiLoader-Template-Java21\\neoforge\\versions\\1.21.11\\build\\classes\\java\\main;examplemod%%E:\\Stonecutter-MultiLoader-Template-Java21\\neoforge\\versions\\1.21.11\\build\\resources\\main" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/neoforge/versions/1.21.11/run" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

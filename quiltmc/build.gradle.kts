@@ -14,9 +14,7 @@ dependencies {
 
 	modImplementation("org.quiltmc:quilt-loader:${commonMod.prop("quilt_loader_version")}")
 	modApi("org.quiltmc:qsl:${commonMod.prop("qsl_version")}")
-	modApi("org.quiltmc.quilted-fabric-api:quilted-fabric-api:${commonMod.prop("quilted_fabric_api_version")}") {
-
-	}
+	modApi("org.quiltmc.quilted-fabric-api:quilted-fabric-api:${commonMod.prop("quilted_fabric_api_version")}")
 }
 
 loom {
@@ -45,6 +43,12 @@ loom {
 			// dependency("com.example.shadowedmod:1.2.3")
 			// configuration("exampleShadedConfigurationName")
 		}
+	}
+}
+
+fabricApi {
+	configureDataGeneration() {
+		client = true
 	}
 }
 

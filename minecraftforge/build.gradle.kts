@@ -82,19 +82,6 @@ minecraft.mavenizer(repositories)
 repositories {
 	maven(fg.forgeMaven)
 	maven(fg.minecraftLibsMaven)
-	exclusiveContent {
-		forRepository {
-			maven {
-				name = "Sponge"
-				url = uri("https://repo.spongepowered.org/repository/maven-public")
-			}
-		}
-		filter {
-			includeGroupAndSubgroups("org.spongepowered")
-		}
-	}
-	mavenCentral()
-	mavenLocal()
 }
 
 dependencies {

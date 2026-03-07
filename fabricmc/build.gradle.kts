@@ -38,6 +38,14 @@ loom {
 	}
 }
 
+if (stonecutter.eval(stonecutter.current.version, ">=1.17")) {
+	fabricApi {
+		configureDataGeneration() {
+			client = true
+		}
+	}
+}
+
 tasks.named<ProcessResources>("processResources") {
 	val awFile = project(":common").file("src/main/resources/accesswideners/${commonMod.minecraft_version}-${mod.id}.accesswidener")
 
