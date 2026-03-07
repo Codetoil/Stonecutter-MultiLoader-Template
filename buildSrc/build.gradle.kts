@@ -1,6 +1,6 @@
 plugins {
 	`kotlin-dsl`
-	kotlin("jvm") version "2.3.0"
+	kotlin("jvm") version "2.3.10"
 }
 
 repositories {
@@ -10,5 +10,5 @@ repositories {
 }
 
 dependencies {
-	implementation("dev.kikugie:stonecutter:0.8.2")
+	implementation("dev.kikugie:stonecutter:0.8.3")
 }

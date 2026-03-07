@@ -8,13 +8,11 @@ pluginManagement {
 		maven("https://maven.minecraftforge.net") { name = "MinecraftForge" }
 		maven("https://maven.kikugie.dev/snapshots")
 		maven("https://maven.kikugie.dev/releases")
-		// Temporary until Quilt Loom 1.14.2 gets fixed
-		maven("./temp-quilt-loom-1.14.2-fix")
 	}
 }
 
 plugins {
-	id("dev.kikugie.stonecutter") version "0.8.2"
+	id("dev.kikugie.stonecutter") version "0.8.3"
 	id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
@@ -23,11 +21,11 @@ val commonVersions =
 val fabricmcVersions =
 	providers.gradleProperty("stonecutter_enabled_fabricmc_versions").orNull?.split(",")?.map { it.trim() }
 		?: emptyList()
-val fg7MinecraftForgeVersions =
-	providers.gradleProperty("stonecutter_enabled_fg7_minecraftforge_versions").orNull?.split(",")?.map { it.trim() }
+val minecraftForgeVersions =
+	providers.gradleProperty("stonecutter_enabled_minecraftforge_versions").orNull?.split(",")?.map { it.trim() }
 		?: emptyList()
-val legacyMDGMinecraftForgeVersions =
-	providers.gradleProperty("stonecutter_enabled_legacy_mdg_minecraftforge_versions").orNull?.split(",")?.map { it.trim() }
+val minecraftForgeRenamerVersions =
+	providers.gradleProperty("stonecutter_enabled_minecraftforge_renamer_versions").orNull?.split(",")?.map { it.trim() }
 		?: emptyList()
 val neoForgeVersions =
 	providers.gradleProperty("stonecutter_enabled_neoforge_versions").orNull?.split(",")?.map { it.trim() }
@@ -51,8 +49,8 @@ stonecutter {
 		}
 
 		branch("minecraftforge") {
-			versions(*fg7MinecraftForgeVersions.toTypedArray()).buildscript("fg7.gradle.kts")
-			versions(*legacyMDGMinecraftForgeVersions.toTypedArray()).buildscript("legacy_mdg.gradle.kts")
+			versions(*minecraftForgeVersions.toTypedArray())
+			versions(*minecraftForgeRenamerVersions.toTypedArray()).buildscript("renamer.gradle.kts")
 		}
 
 		branch("neoforge") {
