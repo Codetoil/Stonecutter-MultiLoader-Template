@@ -10,20 +10,17 @@ loom {
 
 dependencies {
 	minecraft("com.mojang:minecraft:${commonMod.minecraft_version}")
-	if (commonMod.propOrNull("mcp_version") != null) {
-		mappings("de.oceanlabs.mcp:mcp_${commonMod.propOrNull("mcp_branch")}:${commonMod.propOrNull("mcp_version")}")
-	} else {
-		mappings(loom.layered {
-			officialMojangMappings()
-			commonMod.propOrNull("parchment_mappings")?.let { parchmentVersion ->
-				if (parchmentVersion != "") parchment("org.parchmentmc.data:parchment-${commonMod.minecraft_version}:$parchmentVersion@zip")
-			}
-		})
-	}
+	mappings(loom.layered {
+		officialMojangMappings()
+		commonMod.propOrNull("parchment_mappings")?.let { parchmentVersion ->
+			if (parchmentVersion != "")
+				parchment("org.parchmentmc.data:parchment-${commonMod.minecraft_version}:$parchmentVersion@zip")
+		}
+	})
 
-	compileOnly("org.spongepowered:mixin:0.8.5")
+	compileOnly("net.fabricmc:sponge-mixin:${commonMod.prop("fabric_mixin_version")}")
 
-	"io.github.llamalad7:mixinextras-common:0.5.0".let {
+	"io.github.llamalad7:mixinextras-common:${commonMod.prop("mixinextras_version")}".let {
 		compileOnly(it)
 		annotationProcessor(it)
 	}

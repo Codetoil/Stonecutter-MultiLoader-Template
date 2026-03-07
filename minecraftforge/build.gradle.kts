@@ -98,6 +98,20 @@ dependencies {
 	if (stonecutter.eval(stonecutter.current.version, ">=1.21.6"))
 		annotationProcessor("net.minecraftforge:eventbus-validator:${commonMod.prop("minecraftforge_eventbus_validator_version")}")
 
+	"jarJar"("net.fabricmc:sponge-mixin:${commonMod.prop("fabric_mixin_version")}") {
+		jarJar.configure(this)
+		{
+			setRange("[${commonMod.prop("fabric_mixin_version")},)")
+		}
+	}
+	annotationProcessor("io.github.llamalad7:mixinextras-common:${commonMod.prop("mixinextras_version")}")
+	"jarJar"("io.github.llamalad7:mixinextras-forge:${commonMod.prop("mixinextras_version")}") {
+		jarJar.configure(this)
+		{
+			setRange("[${commonMod.prop("mixinextras_version")},)")
+		}
+	}
+
 	// Example mod dependency with JEI
 	// The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
 	//compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"

@@ -62,6 +62,8 @@ tasks {
 				commonMod.propOrNull("minecraftforge_eventbus_validator_version"),
 			"quilted_fabric_api_version" to commonMod.propOrNull("quilted_fabric_api_version"),
 			"quilt_loader_version" to commonMod.propOrNull("quilt_loader_version"),
+			"fabric_mixin_version" to commonMod.propOrNull("fabric_mixin_version"),
+			"mixinextras_version" to commonMod.propOrNull("mixinextras_version"),
 		).filterValues { it?.isNotEmpty() == true }.mapValues { (_, v) -> v!! }
 
 		val jsonExpandProps = expandProps.mapValues { (_, v) -> v.replace("\n", "\\\\n") }

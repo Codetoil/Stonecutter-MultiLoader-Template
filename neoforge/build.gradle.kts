@@ -10,7 +10,8 @@ neoForge {
 }
 
 dependencies {
-
+	jarJar("net.fabricmc:sponge-mixin:${commonMod.prop("fabric_mixin_version")}")
+	jarJar("io.github.llamalad7:mixinextras-neoforge:${commonMod.prop("mixinextras_version")}")
 }
 
 neoForge {
