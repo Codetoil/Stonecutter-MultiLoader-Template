@@ -105,6 +105,9 @@ dependencies {
 	// If the group id is "net.minecraft" and the artifact id is one of ["client", "server", "joined"],
 	// then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
 	implementation(minecraft.dependency("net.minecraftforge:forge:${commonMod.minecraft_version}-${commonMod.prop("minecraftforge_version")}"))
+	{
+		exclude(group = "org.spongepowered", module = "mixin")
+	}
 
 	// Forge 1.21.6+ uses EventBus 7, which shifts most of its runtime validation to compile-time via an annotation processor
 	// to improve performance in production environments. This line is required to enable said compile-time validation
