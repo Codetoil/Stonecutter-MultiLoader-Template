@@ -121,6 +121,20 @@ dependencies {
 	//compileOnly "mezz.jei:jei-${mc_version}-forge-api:${jei_version}"
 	//runtimeOnly "mezz.jei:jei-${mc_version}-forge:${jei_version}"
 
+	"jarJar"("net.fabricmc:sponge-mixin:${commonMod.prop("fabric_mixin_version")}") {
+		jarJar.configure(this)
+		{
+			setRange("[${commonMod.prop("fabric_mixin_version")},)")
+		}
+	}
+	annotationProcessor("io.github.llamalad7:mixinextras-common:${commonMod.prop("mixinextras_version")}")
+	"jarJar"("io.github.llamalad7:mixinextras-forge:${commonMod.prop("mixinextras_version")}") {
+		jarJar.configure(this)
+		{
+			setRange("[${commonMod.prop("mixinextras_version")},)")
+		}
+	}
+
 	// Example mod dependency using a mod jar from ./libs with a flat dir repository
 	// This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
 	// The group id is ignored when searching -- in this case, it is "blank"
