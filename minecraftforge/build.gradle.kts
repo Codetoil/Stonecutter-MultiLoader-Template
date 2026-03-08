@@ -82,6 +82,20 @@ minecraft.mavenizer(repositories)
 repositories {
 	maven(fg.forgeMaven)
 	maven(fg.minecraftLibsMaven)
+	mavenCentral()
+	exclusiveContent {
+		forRepository {
+			maven("https://repo.spongepowered.org/repository/maven-public") { name = "Sponge" }
+		}
+		filter { includeGroupAndSubgroups("org.spongepowered") }
+	}
+	exclusiveContent {
+		forRepositories(
+			maven("https://maven.parchmentmc.org") { name = "ParchmentMC" }
+		)
+		filter { includeGroup("org.parchmentmc.data") }
+	}
+	maven("https://maven.fabricmc.net/") { name = "FabricMC" }
 }
 
 dependencies {

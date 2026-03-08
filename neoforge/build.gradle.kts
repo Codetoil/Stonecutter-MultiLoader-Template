@@ -3,6 +3,11 @@ plugins {
 	id("net.neoforged.moddev")
 }
 
+repositories {
+	mavenCentral()
+	maven("https://maven.fabricmc.net/") { name = "FabricMC" }
+}
+
 neoForge {
 	enable {
 		version = commonMod.prop("neoforge_version")

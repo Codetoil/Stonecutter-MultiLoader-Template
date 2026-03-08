@@ -8,6 +8,19 @@ loom {
 		common.project.file("../../src/main/resources/accesswideners/${commonMod.minecraft_version}-${mod.id}.accesswidener")
 }
 
+repositories {
+	maven("https://libraries.minecraft.net") { name = "Mojang" }
+	mavenCentral()
+	exclusiveContent {
+		forRepositories(
+			maven("https://maven.parchmentmc.org") { name = "ParchmentMC" }
+		)
+		filter { includeGroup("org.parchmentmc.data") }
+	}
+	maven("https://maven.quiltmc.org/repository/release/") { name = "QuiltMC" }
+	maven("https://maven.fabricmc.net/") { name = "FabricMC" }
+}
+
 dependencies {
 	minecraft("com.mojang:minecraft:${commonMod.minecraft_version}")
 	mappings(loom.layered {

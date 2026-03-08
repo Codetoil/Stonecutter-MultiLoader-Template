@@ -15,28 +15,6 @@ java {
 	// withJavadocJar()
 }
 
-repositories {
-	maven("https://libraries.minecraft.net") { name = "Mojang" }
-	mavenCentral()
-	exclusiveContent {
-		forRepository {
-			maven("https://repo.spongepowered.org/repository/maven-public") { name = "Sponge" }
-		}
-		filter { includeGroupAndSubgroups("org.spongepowered") }
-	}
-	exclusiveContent {
-		forRepositories(
-			maven("https://maven.parchmentmc.org") { name = "ParchmentMC" },
-			maven("https://maven.neoforged.net/releases") { name = "NeoForge" }
-		)
-		filter { includeGroup("org.parchmentmc.data") }
-	}
-	maven("https://maven.quiltmc.org/repository/release/") { name = "QuiltMC" }
-	maven("https://maven.fabricmc.net/") { name = "FabricMC" }
-	maven("https://maven.neoforged.net/releases") { name = "NeoForge" }
-	maven("https://maven.minecraftforge.net") { name = "MinecraftForge" }
-}
-
 tasks {
 	processResources {
 		val expandProps = mapOf(
