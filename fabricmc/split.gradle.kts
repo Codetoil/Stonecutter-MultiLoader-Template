@@ -1,6 +1,6 @@
 plugins {
 	multiloader
-	id("net.fabricmc.fabric-loom.remap")
+	id("net.fabricmc.fabric-loom-remap")
 }
 
 val commonJava: Configuration by configurations.creating {
@@ -32,7 +32,7 @@ repositories {
 
 loom {
 	accessWidenerPath =
-		common.project.file("../../src/main/resources/accesswideners/${commonMod.minecraft_version}-${mod.id}.classtweaker")
+		common.project.file("../../src/main/resources/classtweakers/${commonMod.minecraft_version}-${mod.id}.classtweaker")
 
 	splitEnvironmentSourceSets()
 

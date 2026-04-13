@@ -13,6 +13,13 @@ println(
 		"Arch: ${providers.systemProperty("os.arch").get()}"
 )
 
+val commonJava: Configuration by configurations.creating {
+	isCanBeResolved = true
+}
+val commonResources: Configuration by configurations.creating {
+	isCanBeResolved = true
+}
+
 minecraft {
 	mappings(
 		if (commonMod.propOrNull("parchment_mappings") != null) "parchment" else "official",
@@ -122,19 +129,9 @@ dependencies {
 	commonJava(project(":common", "commonClientJava"))
 	commonResources(project(":common", "commonClientResources"))
 
-	"jarJar"("net.fabricmc:sponge-mixin:${commonMod.prop("fabric_mixin_version")}") {
-		jarJar.configure(this)
-		{
-			setRange("[${commonMod.prop("fabric_mixin_version")},)")
-		}
-	}
+	"jarJar"("net.fabricmc:sponge-mixin:${commonMod.prop("fabric_mixin_version")}")
 	annotationProcessor("io.github.llamalad7:mixinextras-common:${commonMod.prop("mixinextras_version")}")
-	"jarJar"("io.github.llamalad7:mixinextras-forge:${commonMod.prop("mixinextras_version")}") {
-		jarJar.configure(this)
-		{
-			setRange("[${commonMod.prop("mixinextras_version")},)")
-		}
-	}
+	"jarJar"("io.github.llamalad7:mixinextras-forge:${commonMod.prop("mixinextras_version")}")
 
 	// Example mod dependency with JEI
 	// The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
