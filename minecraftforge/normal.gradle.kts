@@ -1,8 +1,8 @@
 plugins {
-	`multiloader-loader`
+	multiloader
 	id("net.minecraftforge.gradle")
 	id("net.minecraftforge.jarjar")
-	// id("net.minecraftforge.accesstransformers")
+	id("net.fabricmc.fabric-loom-companion")
 }
 
 println(
@@ -31,6 +31,8 @@ minecraft {
 			systemProperty("forge.logging.console.level", "debug")
 
 			systemProperty("eventbus.api.strictRuntimeChecks", "true")
+
+			systemProperty("mixin.env.disableRefMap", "true")
 
 			//args ("-mixin.config=${commonMod.id}.mixins.json")
 
@@ -77,7 +79,6 @@ jarJar.register() {
 	archiveClassifier = null
 }
 
-
 minecraft.mavenizer(repositories)
 repositories {
 	maven(fg.forgeMaven)
@@ -115,6 +116,12 @@ dependencies {
 	if (stonecutter.eval(stonecutter.current.version, ">=1.21.6"))
 		annotationProcessor("net.minecraftforge:eventbus-validator:${commonMod.prop("minecraftforge_eventbus_validator_version")}")
 
+	compileOnly(project(":common"))
+	commonJava(project(":common", "commonJava"))
+	commonResources(project(":common", "commonResources"))
+	commonJava(project(":common", "commonClientJava"))
+	commonResources(project(":common", "commonClientResources"))
+
 	"jarJar"("net.fabricmc:sponge-mixin:${commonMod.prop("fabric_mixin_version")}") {
 		jarJar.configure(this)
 		{
@@ -151,8 +158,14 @@ tasks.withType<JavaCompile>().configureEach {
 }
 
 tasks {
+	compileJava {
+		dependsOn(commonJava)
+		source(commonJava)
+	}
+
 	processResources {
-		exclude("${mod.id}.accesswidener")
+		dependsOn(commonResources)
+		from(commonResources)
 	}
 
 	register<Copy>("copyAT") {
@@ -169,10 +182,4 @@ tasks {
 
 tasks.named("stonecutterPrepare") {
 	finalizedBy(tasks.named("copyAT"))
-}
-
-sourceSets.forEach {
-	val dir = layout.buildDirectory.dir("sourcesSets/$it.name")
-	it.output.setResourcesDir(dir)
-	it.java.destinationDirectory = dir
 }

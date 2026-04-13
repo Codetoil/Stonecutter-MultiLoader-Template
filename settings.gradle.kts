@@ -12,17 +12,22 @@ pluginManagement {
 }
 
 plugins {
-	id("dev.kikugie.stonecutter") version "0.8.3"
+	id("dev.kikugie.stonecutter") version "0.9.1-beta.5"
 	id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
-val commonVersions =
-	providers.gradleProperty("stonecutter_enabled_common_versions").orNull?.split(",")?.map { it.trim() } ?: emptyList()
-val fabricmcVersions =
-	providers.gradleProperty("stonecutter_enabled_fabricmc_versions").orNull?.split(",")?.map { it.trim() }
+val commonSplitVersions =
+	providers.gradleProperty("stonecutter_enabled_common_split_versions").orNull?.split(",")?.map { it.trim() } ?: emptyList()
+val commonUnsplitVersions =
+	providers.gradleProperty("stonecutter_enabled_common_unsplit_versions").orNull?.split(",")?.map { it.trim() } ?: emptyList()
+val fabricMCSplitVersions =
+	providers.gradleProperty("stonecutter_enabled_fabricmc_split_versions").orNull?.split(",")?.map { it.trim() }
 		?: emptyList()
-val minecraftForgeVersions =
-	providers.gradleProperty("stonecutter_enabled_minecraftforge_versions").orNull?.split(",")?.map { it.trim() }
+val fabricMCUnsplitVersions =
+	providers.gradleProperty("stonecutter_enabled_fabricmc_unsplit_versions").orNull?.split(",")?.map { it.trim() }
+		?: emptyList()
+val minecraftForgeNormalVersions =
+	providers.gradleProperty("stonecutter_enabled_minecraftforge_normal_versions").orNull?.split(",")?.map { it.trim() }
 		?: emptyList()
 val minecraftForgeRenamerVersions =
 	providers.gradleProperty("stonecutter_enabled_minecraftforge_renamer_versions").orNull?.split(",")?.map { it.trim() }
@@ -30,35 +35,30 @@ val minecraftForgeRenamerVersions =
 val neoForgeVersions =
 	providers.gradleProperty("stonecutter_enabled_neoforge_versions").orNull?.split(",")?.map { it.trim() }
 		?: emptyList()
-val quiltmcVersions =
-	providers.gradleProperty("stonecutter_enabled_quiltmc_versions").orNull?.split(",")?.map { it.trim() }
-		?: emptyList()
 stonecutter {
 	kotlinController = true
 	centralScript = "build.gradle.kts"
 
 	create(rootProject) {
-		versions(*commonVersions.toTypedArray())
+		versions(*(commonSplitVersions + commonUnsplitVersions).toTypedArray())
 
 		branch("common") {
-			versions(*commonVersions.toTypedArray())
+			versions(*commonSplitVersions.toTypedArray()).buildscript("split.gradle.kts")
+			versions(*commonUnsplitVersions.toTypedArray()).buildscript("unsplit.gradle.kts")
 		}
 
 		branch("fabricmc") {
-			versions(*fabricmcVersions.toTypedArray())
+			versions(*fabricMCSplitVersions.toTypedArray()).buildscript("split.gradle.kts")
+			versions(*fabricMCUnsplitVersions.toTypedArray()).buildscript("unsplit.gradle.kts")
 		}
 
 		branch("minecraftforge") {
-			versions(*minecraftForgeVersions.toTypedArray())
+			versions(*minecraftForgeNormalVersions.toTypedArray()).buildscript("normal.gradle.kts")
 			versions(*minecraftForgeRenamerVersions.toTypedArray()).buildscript("renamer.gradle.kts")
 		}
 
 		branch("neoforge") {
-			versions(*neoForgeVersions.toTypedArray())
-		}
-
-		branch("quiltmc") {
-			versions(*quiltmcVersions.toTypedArray())
+			versions(*neoForgeVersions.toTypedArray()).buildscript("build.gradle.kts")
 		}
 	}
 }

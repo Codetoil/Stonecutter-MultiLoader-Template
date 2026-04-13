@@ -1,11 +1,6 @@
 plugins {
-	id("multiloader-common")
-	id("org.quiltmc.loom")
-}
-
-loom {
-	accessWidenerPath =
-		common.project.file("../../src/main/resources/accesswideners/${commonMod.minecraft_version}-${mod.id}.accesswidener")
+	multiloader
+	id("net.fabricmc.fabric-loom-remap")
 }
 
 repositories {
@@ -19,6 +14,18 @@ repositories {
 	}
 	maven("https://maven.quiltmc.org/repository/release/") { name = "QuiltMC" }
 	maven("https://maven.fabricmc.net/") { name = "FabricMC" }
+}
+
+loom {
+	accessWidenerPath =
+		common.project.file("../../src/main/resources/accesswideners/${commonMod.minecraft_version}-${mod.id}.classtweaker")
+
+
+	mods {
+		create(mod.id) {
+			sourceSet(sourceSets.main.get())
+		}
+	}
 }
 
 dependencies {

@@ -1,6 +1,13 @@
 plugins {
-	`multiloader-loader`
-	id("org.quiltmc.loom")
+	multiloader
+	id("net.fabricmc.fabric-loom.remap")
+}
+
+val commonJava: Configuration by configurations.creating {
+	isCanBeResolved = true
+}
+val commonResources: Configuration by configurations.creating {
+	isCanBeResolved = true
 }
 
 repositories {
@@ -14,6 +21,32 @@ repositories {
 	}
 	maven("https://maven.quiltmc.org/repository/release/") { name = "QuiltMC" }
 	maven("https://maven.fabricmc.net/") { name = "FabricMC" }
+}
+
+loom {
+	accessWidenerPath =
+		common.project.file("../../src/main/resources/accesswideners/${commonMod.minecraft_version}-${mod.id}.classtweaker")
+
+	mods {
+		create("jingling_journeys") {
+			sourceSet(sourceSets.main.get())
+		}
+	}
+
+	runConfigs.configureEach {
+		ideConfigGenerated(false)
+	}
+
+	runs {
+		getByName("client") {
+			client()
+			configName = "Fabric Client"
+		}
+		getByName("server") {
+			server()
+			configName = "Fabric Server"
+		}
+	}
 }
 
 dependencies {
@@ -31,40 +64,33 @@ dependencies {
 	include("net.fabricmc:sponge-mixin:${commonMod.prop("fabric_mixin_version")}")
 	annotationProcessor("io.github.llamalad7:mixinextras-fabric:${commonMod.prop("mixinextras_version")}")
 	include("io.github.llamalad7:mixinextras-fabric:${commonMod.prop("mixinextras_version")}")
-}
 
-loom {
-	accessWidenerPath =
-		common.project.file("../../src/main/resources/accesswideners/${commonMod.minecraft_version}-${mod.id}.accesswidener")
-
-	runs {
-		getByName("client") {
-			client()
-			configName = "Fabric Client"
-			ideConfigGenerated(true)
-		}
-		getByName("server") {
-			server()
-			configName = "Fabric Server"
-			ideConfigGenerated(true)
-		}
-	}
+	compileOnly(project(":common"))
+	commonJava(project(":common", "commonJava"))
+	commonResources(project(":common", "commonResources"))
 }
 
 if (stonecutter.eval(stonecutter.current.version, ">=1.17")) {
 	fabricApi {
 		configureDataGeneration() {
 			client = true
+			modId = mod.id
 		}
 	}
 }
 
-tasks.named<ProcessResources>("processResources") {
-	val awFile = project(":common").file("src/main/resources/accesswideners/${commonMod.minecraft_version}-${mod.id}.accesswidener")
+tasks {
+	compileJava {
+		dependsOn(commonJava)
+		source(commonJava)
+	}
 
-	from(awFile.parentFile) {
-		include(awFile.name)
-		rename(awFile.name, "${mod.id}.accesswidener")
-		into("")
+	processResources {
+		dependsOn(commonResources)
+		from(commonResources)
+	}
+
+	jar {
+		duplicatesStrategy = DuplicatesStrategy.WARN
 	}
 }

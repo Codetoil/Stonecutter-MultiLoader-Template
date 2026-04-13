@@ -1,6 +1,14 @@
 plugins {
-	`multiloader-loader`
+	multiloader
 	id("net.neoforged.moddev")
+	id("net.fabricmc.fabric-loom-companion")
+}
+
+val commonJava: Configuration by configurations.creating {
+	isCanBeResolved = true
+}
+val commonResources: Configuration by configurations.creating {
+	isCanBeResolved = true
 }
 
 repositories {
@@ -17,6 +25,12 @@ neoForge {
 dependencies {
 	jarJar("net.fabricmc:sponge-mixin:${commonMod.prop("fabric_mixin_version")}")
 	jarJar("io.github.llamalad7:mixinextras-neoforge:${commonMod.prop("mixinextras_version")}")
+
+	compileOnly(project(":common"))
+	commonJava(project(":common", "commonJava"))
+	commonResources(project(":common", "commonResources"))
+	commonJava(project(":common", "commonClientJava"))
+	commonResources(project(":common", "commonClientResources"))
 }
 
 neoForge {
@@ -70,12 +84,18 @@ sourceSets.main {
 }
 
 tasks {
+	compileJava {
+		dependsOn(commonJava)
+		source(commonJava)
+	}
+
 	processResources {
 		exclude("${mod.id}.accesswidener")
+		dependsOn(commonResources)
 
 		val atFile = project(":common").file("src/main/resources/accesstransformers/accesstransformer-${commonMod.minecraft_version}.cfg")
 
-		from(atFile.parentFile) {
+		from(commonResources, atFile.parentFile) {
 			include(atFile.name)
 			rename(atFile.name, "META-INF/accesstransformer.cfg")
 			into("")
